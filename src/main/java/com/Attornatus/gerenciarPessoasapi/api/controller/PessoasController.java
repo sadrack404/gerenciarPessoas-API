@@ -36,4 +36,15 @@ public class PessoasController {
         pessoaService.salvar(pessoa);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Pessoa> editaPessoa(@PathVariable Long id, @RequestBody Pessoa pessoa) {
+        Pessoa PessoaNovo = pessoaService.validaIdPessoa(id);
+        if (PessoaNovo != null) {
+            BeanUtils.copyProperties(pessoa, PessoaNovo, "id");
+            pessoaService.salvar(PessoaNovo);
+            return ResponseEntity.ok(PessoaNovo);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
