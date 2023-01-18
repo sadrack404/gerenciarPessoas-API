@@ -28,7 +28,7 @@ public class EnderecoController {
     }
 
     @PostMapping
-    public Endereco criaEndereco(@RequestBody Endereco endereco){
+    public Endereco criaEndereco(@RequestBody Endereco endereco) {
         return enderecoService.salvar(endereco);
     }
 

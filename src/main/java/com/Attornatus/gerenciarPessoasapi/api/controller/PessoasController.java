@@ -21,18 +21,19 @@ public class PessoasController {
     @Autowired
     PessoaService pessoaService;
 
-    @PostMapping()
-    public void criarPessoa(@RequestBody Pessoa pessoa){
-        pessoaService.salvar(pessoa);
-    }
-
     @GetMapping()
     public List<Pessoa> listarPessoa() {
         return pessoaRepository.findAll();
     }
+
     @GetMapping("/{id}")
-    public Optional<Pessoa> listaUmaPessoa(Long id){
-        return pessoaRepository.findById(id);
+    public Pessoa listaUmaPessoa(@PathVariable Long id) {
+        return pessoaService.validaIdPessoa(id);
+    }
+
+    @PostMapping()
+    public void criarPessoa(@RequestBody Pessoa pessoa) {
+        pessoaService.salvar(pessoa);
     }
 
 }
