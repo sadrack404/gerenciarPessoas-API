@@ -1,22 +1,29 @@
 package com.Attornatus.gerenciarPessoasapi.domain.model;
 
 import lombok.Data;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
 public class Pessoa {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private Date dataDeNascimento;
-    @ManyToOne
-    @Nullable
-    private Endereco endereco;
+
+    @OneToMany(mappedBy = "pessoa")
+    private final List<Endereco> enderecos = new ArrayList<>();
+
+    public void addEndereco(Endereco endereco) {
+        enderecos.add(endereco);
+    }
+    public void removeEndereco(Endereco endereco) {
+        enderecos.remove(endereco);
+    }
 
 }

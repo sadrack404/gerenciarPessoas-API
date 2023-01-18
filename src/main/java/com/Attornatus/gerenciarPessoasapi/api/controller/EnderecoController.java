@@ -23,7 +23,7 @@ public class EnderecoController {
     }
 
     @GetMapping("{id}")
-    public Optional<Endereco> listaUmEndereco(Long id) {
+    public Optional<Endereco> listaUmEndereco(@PathVariable Long id) {
         return enderecoRepository.findById(id);
     }
 
