@@ -18,7 +18,6 @@ public class Pessoa {
     private Date dataDeNascimento;
 
     @OneToMany
-    @ToString.Exclude
     private final List<Endereco> enderecos = new ArrayList<>();
 
     public void addEndereco(Endereco endereco) {

@@ -57,4 +57,5 @@ public class PessoasController {
     public List<Endereco> listaEnderecosDeUmaPessoa(@PathVariable Long id) {
         return pessoaService.listaEnderecosDePessoa(id);
     }
+
 }

@@ -8,17 +8,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.transaction.Transactional;
+
 @Service
 public class EnderecoService {
     @Autowired
     EnderecoRepository enderecoRepository;
     @Autowired
     PessoaService pessoaService;
-
+    @Transactional
     public Endereco salvar(Endereco endereco) {
         return enderecoRepository.save(endereco);
     }
 
+    @Transactional
     public Pessoa criaEnderecoPessoa(@PathVariable Long pessoaId, @RequestBody Endereco endereco) {
         var pessoa = pessoaService.validaIdPessoa(pessoaId);
         if (pessoa != null) {
