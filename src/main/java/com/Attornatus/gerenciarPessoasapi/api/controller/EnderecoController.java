@@ -3,7 +3,9 @@ package com.Attornatus.gerenciarPessoasapi.api.controller;
 import com.Attornatus.gerenciarPessoasapi.domain.model.Endereco;
 import com.Attornatus.gerenciarPessoasapi.domain.repository.EnderecoRepository;
 import com.Attornatus.gerenciarPessoasapi.domain.service.EnderecoService;
+import com.Attornatus.gerenciarPessoasapi.domain.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,14 +18,16 @@ public class EnderecoController {
     EnderecoRepository enderecoRepository;
     @Autowired
     EnderecoService enderecoService;
+    @Autowired
+    PessoaService pessoaService;
 
     @GetMapping
-    public List<Endereco> listaEnderecos() {
+    public List<Endereco> listar() {
         return enderecoRepository.findAll();
     }
 
     @GetMapping("{id}")
-    public Optional<Endereco> listaUmEndereco(@PathVariable Long id) {
+    public Optional<Endereco> nuscar(@PathVariable Long id) {
         return enderecoRepository.findById(id);
     }
 
@@ -31,5 +35,6 @@ public class EnderecoController {
     public Endereco criaEndereco(@RequestBody Endereco endereco) {
         return enderecoService.salvar(endereco);
     }
+
 
 }

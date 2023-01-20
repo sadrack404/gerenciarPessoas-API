@@ -1,6 +1,7 @@
 package com.Attornatus.gerenciarPessoasapi.domain.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,14 +17,12 @@ public class Pessoa {
     private String nome;
     private Date dataDeNascimento;
 
-    @OneToMany(mappedBy = "pessoa")
+    @OneToMany
+    @ToString.Exclude
     private final List<Endereco> enderecos = new ArrayList<>();
 
     public void addEndereco(Endereco endereco) {
         enderecos.add(endereco);
-    }
-    public void removeEndereco(Endereco endereco) {
-        enderecos.remove(endereco);
     }
 
 }

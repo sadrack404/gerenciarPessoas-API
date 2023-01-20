@@ -3,20 +3,21 @@ package com.Attornatus.gerenciarPessoasapi.domain.service;
 import com.Attornatus.gerenciarPessoasapi.domain.exception.IdNaoEncontradoException;
 import com.Attornatus.gerenciarPessoasapi.domain.model.Endereco;
 import com.Attornatus.gerenciarPessoasapi.domain.model.Pessoa;
-import com.Attornatus.gerenciarPessoasapi.domain.repository.EnderecoRepository;
 import com.Attornatus.gerenciarPessoasapi.domain.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @Service
 public class PessoaService {
     @Autowired
     PessoaRepository pessoaRepository;
-    @Autowired
-    private EnderecoRepository enderecoRepository;
+    private static List <Endereco> enderecos;
 
+    public List<Pessoa> listarTodasPessoas(){
+        return pessoaRepository.findAll();
+    }
 
     public Pessoa validaIdPessoa(Long id) {
         return pessoaRepository.findById(id).orElseThrow(
@@ -28,5 +29,14 @@ public class PessoaService {
 
     public void salvar(Pessoa pessoa) {
         pessoaRepository.save(pessoa);
+    }
+
+    public List<Endereco> listaEnderecosDePessoa(Long pessoaId) {
+        Pessoa pessoa = validaIdPessoa(pessoaId);
+        if (pessoa.getId() != null) {
+            enderecos = pessoa.getEnderecos();
+            return enderecos;
+        }
+        return enderecos.stream().toList();
     }
 }
