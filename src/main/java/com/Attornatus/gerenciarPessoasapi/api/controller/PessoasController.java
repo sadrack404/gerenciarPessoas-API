@@ -16,9 +16,10 @@ import java.util.List;
 @RequestMapping("/pessoas")
 public class PessoasController {
     @Autowired
-    EnderecoService enderecoService;
-    @Autowired
     PessoaService pessoaService;
+
+    @Autowired
+    EnderecoService enderecoService;
 
     @GetMapping()
     public List<Pessoa> listar() {
@@ -47,15 +48,14 @@ public class PessoasController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Endereco> adicionaUmEndereco(@PathVariable Long id, @RequestBody Endereco endereco) {
-        enderecoService.criaEnderecoPessoa(id, endereco);
+    @PostMapping("/{pessoaId}/enderecos")
+    public ResponseEntity<Endereco> adicionaUmEndereco(@PathVariable Long pessoaId, @RequestBody Endereco endereco) {
+        enderecoService.criaEnderecoPessoa(pessoaId, endereco);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/enderecos/{id}")
-    public List<Endereco> listaEnderecosDeUmaPessoa(@PathVariable Long id) {
-        return pessoaService.listaEnderecosDePessoa(id);
+    @GetMapping("/{pessoaId}/enderecos")
+    public List<Endereco> listaEnderecosDeUmaPessoa(@PathVariable Long pessoaId) {
+        return pessoaService.listaEnderecosDePessoa(pessoaId);
     }
-
 }

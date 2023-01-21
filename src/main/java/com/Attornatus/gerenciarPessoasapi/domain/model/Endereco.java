@@ -3,10 +3,7 @@ package com.Attornatus.gerenciarPessoasapi.domain.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -19,4 +16,6 @@ public class Endereco {
     private String cep;
     private String numero;
     private String cidade;
+    @Column(name = "endereco_principal")
+    private Boolean EnderecoPrincipal = false;
 }
