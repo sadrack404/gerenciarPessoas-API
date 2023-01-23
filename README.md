@@ -23,9 +23,9 @@ Esta API deve permitir :
 ### Rotas da aplicação:
 <b>[GET] </b> /pessoas : A rota deverá listar todas as pessoas cadastradas<br><br>
 <b>[GET] </b> /pessoas/{id} : A rota deverá buscar a pessoa com o id informado<br><br>
-<b>[POST] </b> /pessoas :  A rota deverá receber nome, data de nascimento e um endereço dentro do corpo da requisição. Ao cadastrar um novo projeto, ele deverá ser armazenado dentro de um objeto no seguinte formato: { id: 1, nome: 'Gabriel', dataDeNascimento: 1971-10-20, enderecos: null };<br><br>
+<b>[POST] </b> /pessoas :  A rota deverá receber nome, data de nascimento e um endereço dentro do corpo da requisição. Ao cadastrar um novo projeto, ele deverá ser armazenado dentro de um objeto no seguinte formato: { "nome": "Gabriel", "dataDeNascimento": "1971-10-20" };<br><br>
 <b>[PUT] </b> /pessoas/{id} : A rota deverá atualizar as informações de nome, data de nascimento ou endereço (podendo ter esse atributo ou não) <br><br>
-<b>[POST] </b> /pessoas/{pessoaId}/enderecos :  A rota deverá receber um logradouro, CEP, numero, cidade. O Objeto deve ser {logradouro: "Margarida", cep: "984000", numero: "20", cidade: "Gama" }<br><br>
+<b>[POST] </b> /pessoas/{pessoaId}/enderecos :  A rota deverá receber um logradouro, CEP, numero, cidade. O Objeto deve ser {"logradouro": "Margarida", "cep": "984000", "numero": "20", "cidade": "Santa Maria" }<br><br>
 <b>[GET] </b> /pessoas/{pessoaId}/enderecos : A rota deverá listar todos os endereços cadastrados da pessoa<br><br>
 
 # Techs:
