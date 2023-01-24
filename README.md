@@ -27,6 +27,8 @@ Esta API deve permitir :
 <b>[PUT] </b> /pessoas/{id} : A rota deverá atualizar as informações de nome, data de nascimento ou endereço (podendo ter esse atributo ou não) <br><br>
 <b>[POST] </b> /pessoas/{pessoaId}/enderecos :  A rota deverá receber um logradouro, CEP, numero, cidade. O Objeto deve ser {"logradouro": "Margarida", "cep": "984000", "numero": "20", "cidade": "Santa Maria" }<br><br>
 <b>[GET] </b> /pessoas/{pessoaId}/enderecos : A rota deverá listar todos os endereços cadastrados da pessoa<br><br>
+<b>[PUT] </b> /pessoas/{pessoaId}/enderecos : A rota deverá atualizar qual é o endereço principal do usuario, recebendo o ID no corpo da requisição<br><br>
+
 
 # Techs:
 - Springboot
