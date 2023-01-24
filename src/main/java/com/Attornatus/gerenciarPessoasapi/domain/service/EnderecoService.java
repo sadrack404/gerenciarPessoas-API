@@ -18,7 +18,7 @@ public class EnderecoService {
     EnderecoRepository enderecoRepository;
     @Autowired
     PessoaService pessoaService;
-    private static List<Endereco> enderecos;
+    private List<Endereco> enderecos;
 
     public Endereco validaEndereco(Long id) {
         return enderecoRepository.findById(id).orElseThrow(
@@ -34,7 +34,7 @@ public class EnderecoService {
     }
 
     @Transactional
-    public Pessoa criaEnderecoPessoa(@PathVariable Long pessoaId, @RequestBody Endereco endereco) {
+    public Pessoa criaEnderecoPessoa(Long pessoaId, Endereco endereco) {
         var pessoa = pessoaService.validaIdPessoa(pessoaId);
         if (pessoa != null) {
             pessoa.addEndereco(endereco);
@@ -43,14 +43,19 @@ public class EnderecoService {
         return pessoa;
     }
 
-    public void alteraEnderecoPrincipal(@PathVariable Long pessoaId, @RequestBody Long enderecoId) {
+    public List<Endereco> alteraEnderecoPrincipal(Long pessoaId, Endereco enderecoId) {
         var pessoa = pessoaService.validaIdPessoa(pessoaId);
-        Boolean troca = false;
         if (pessoa != null) {
             enderecos = pessoa.getEnderecos();
-            enderecos.stream()
-                    .filter(Endereco::getEnderecoPrincipal)
-                    .forEach(endereco -> endereco.setEnderecoPrincipal(troca));
+            for ( Endereco end : enderecos ) {
+                end.setEnderecoPrincipal(false);
+                if (end.getId().equals(enderecoId.getId())){
+                    end.setEnderecoPrincipal(true);
+                }
+            }
+            pessoaService.salvar(pessoa);
+            return enderecos;
         }
+        return enderecos;
     }
 }

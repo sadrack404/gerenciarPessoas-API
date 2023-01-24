@@ -58,4 +58,9 @@ public class PessoasController {
     public List<Endereco> listaEnderecosDeUmaPessoa(@PathVariable Long pessoaId) {
         return pessoaService.listaEnderecosDePessoa(pessoaId);
     }
+
+    @PutMapping("/{pessoaId}/enderecos")
+    public List<Endereco> alteraEnderecoPrincipal(@PathVariable Long pessoaId, @RequestBody Endereco enderecoId ) {
+        return enderecoService.alteraEnderecoPrincipal(pessoaId, enderecoId);
+    }
 }

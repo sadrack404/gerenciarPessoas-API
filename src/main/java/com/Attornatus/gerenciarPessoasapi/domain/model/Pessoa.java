@@ -16,8 +16,8 @@ public class Pessoa {
     private String nome;
     private Date dataDeNascimento;
 
-    @OneToMany
-    private final List<Endereco> enderecos = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Endereco> enderecos = new ArrayList<>();
 
     public void addEndereco(Endereco endereco) {
         enderecos.add(endereco);
